@@ -1,0 +1,17 @@
+---
+ 
+ - hosts: dual
+   become: true
+   tasks:
+
+
+   - name: work with lint package
+     yum:
+       name: rpmlint
+       state: absent
+
+   - name: update repository index
+     yum:
+      update_cache: yes
+
+...
