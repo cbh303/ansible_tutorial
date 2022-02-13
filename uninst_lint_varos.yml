@@ -1,0 +1,29 @@
+---
+ 
+ - hosts: dual
+   become: true
+   tasks:
+
+   - name: work with lint package on RedHat
+     yum:
+       name: rpmlint
+       state: absent
+     when: ansible_distribution == "RedHat"
+
+   - name: update repository index on RedHat
+     yum:
+      update_cache: yes
+     when: ansible_distribution == "RedHat"
+
+   - name: work with lint package on Ubuntu
+     apt:
+       name: rpmlint
+       state: absent
+     when: ansible_distribution == "Ubuntu"
+
+   - name: update repository index on Ubuntu
+     apt:
+      update_cache: yes
+     when: ansible_distribution == "Ubuntu"
+
+...
